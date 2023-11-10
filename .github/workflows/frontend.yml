@@ -3,13 +3,9 @@ name: frontend-deploy
 on:
   push:
     branches: ['main']
-
 jobs:
   build:
     runs-on: self-hosted
-    defaults:
-      run:
-        working-directory: frontend
     # strategy:
     #   matrix:
     #     node-version: [21.x]
@@ -23,6 +19,6 @@ jobs:
       #     cache: 'npm'
       # cache-dependency-path: frontend/package-lock.json
       - run: npm i
-        # working-directory: ./frontend
+        working-directory: frontend
       - run: npm run build --if-present
-        # working-directory: ./frontend
+        working-directory: frontend
