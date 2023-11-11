@@ -1,7 +1,9 @@
 package com.memorygame.controller;
 
 import com.memorygame.model.Gamer;
+import com.memorygame.model.Result;
 import com.memorygame.service.GamerService;
+import com.memorygame.service.GamerResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +37,9 @@ public class GamerController {
     public Optional<List<Result>> findGamerResults(@PathVariable String name) {
         Optional<Gamer> gamer = gamerService.findByName(name);
         if (gamer.isPresent()) {
-            return gamerResultService.findById(gamer.get().getId());
+            return gamerResultService.findByGamerId(gamer.get().getId());
+        } else {
+            return Optional.empty();
         }
     }
 }
